@@ -1,42 +1,44 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import foto1 from "./ocean-918999_1920.jpg";
-// import "../style.css";
-
 class Foto extends React.Component {
+  handleFotoClick = (e) => {
+    console.log(e.target.getAttribute("id"));
+  };
+  render() {
+    return (
+      <img
+        id={this.props.id}
+        src={this.props.url}
+        onClick={this.handleFotoClick}
+      />
+    );
+  }
+}
+
+class App extends React.Component {
   state = {
-    fotoGalery: [
+    fotosUrl: [
       "./home-office-336373_1920.jpg",
       "./light-bulb-1246043_1920.jpg",
       "./milky-way-984050_1920.jpg",
       "./ocean-918999_1920.jpg",
     ],
+    fotosGalery: [3, 2, 2, 0, 1, 0],
+    id: 0,
+    namberFotos: 3,
   };
 
-  randomFoto = () => {
-    const randomNamber = Math.floor(Math.random() * (4 - 0));
-    return randomNamber;
+  makeId = () => {
+    return this.state.id++;
   };
 
   render() {
-    return <img src={this.state.fotoGalery[this.randomFoto()]} />;
+    return (
+      <div>
+        {this.state.fotosGalery.map((item) => (
+          <Foto id={this.makeId()} url={this.state.fotosUrl[item]} />
+        ))}
+      </div>
+    );
   }
-}
-
-function App(params) {
-  return (
-    <div>
-      <Foto />
-      <Foto />
-      <Foto />
-      <Foto />
-      <Foto />
-      <Foto />
-      <Foto />
-      <Foto />
-      <Foto />
-    </div>
-  );
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));

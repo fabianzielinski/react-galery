@@ -1,5 +1,11 @@
+body {
+  margin: auto;
+  padding: 0.5%;
+  background-color: #ffffff;
+}
+
 img {
   height: 30vh;
-  width: 30%;
+  width: 31vw;
   padding: 0.5%;
 }
